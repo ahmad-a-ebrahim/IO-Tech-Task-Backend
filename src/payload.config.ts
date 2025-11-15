@@ -8,6 +8,11 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Services } from './collections/Services'
+import { Subscriptions } from './collections/Subscriptions'
+import { Profiles } from './collections/Profiles'
+import { Teams } from './collections/Teams'
+import { Clients } from './collections/Clients'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,7 +24,12 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  localization: {
+    locales: ['en', 'ar'],
+    defaultLocale: 'en',
+    fallback: true,
+  },
+  collections: [Users, Media, Services, Subscriptions, Profiles, Teams, Clients],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
